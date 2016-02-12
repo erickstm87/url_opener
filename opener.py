@@ -4,10 +4,8 @@ import csv
 import numpy as np
 
 b = webbrowser.get('firefox')
-with open ('link.csv', 'rb') as f:
-	reader = csv.reader(f)
-	f1 = list(reader)
-	print type(f1)
-	for x in f1:
-		print(x)
-		b.open(x)
+f = open('link.txt','r') 
+list('f')
+for j in f:
+	print(j)
+	b.open(j)
