@@ -1,6 +1,0 @@
-#!/usr/bin/python
-import webbrowser
-a = ['https://www.google.com','https//www.dpmclimbing.com','http://www.gizmodo.com']
-b = webbrowser.get('firefox')
-for i in a:
-    b.open(i)
