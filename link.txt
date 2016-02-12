@@ -1,1 +1,1 @@
-['https://www.google.com\n', 'https://www.gizmodo.com\n', 'http://dpmclimbing.com\n']
+<type 'list'>
