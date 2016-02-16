@@ -21,23 +21,23 @@ for row in file1:
 np.transpose(new_file)
 x = 0
 for i in new_file:
+    x += 1
     #b.open(i,new=new)
     webbrowser.open(i,new=new)
     time.sleep(5)
-    x += 1
     if x==1:
-        pyautogui.click(575,964,duration=.9)
+        pyautogui.click(418,410)
         time.sleep(3)
         os.system(bashCommand)
     elif x==2:
-        pyautogui.click(545,577,duration=.9)
+        pyautogui.click(1173,483,duration=.9)
         time.sleep(3)
         os.system(bashCommand)
     else:
         pyautogui.click(277,705,duration=.9)
         time.sleep(3)
         os.system(bashCommand)
-    print(x) 
+    
     
     
 
