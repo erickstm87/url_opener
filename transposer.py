@@ -6,6 +6,7 @@ import sys
 import os
 import time
 import pyautogui
+#for installation of pyautogui on mac check out http://stackoverflow.com/questions/35051580/phyton3-pip-and-pyautogui-install-mac-remove-broken-python and go to the bottom 
 
 pyautogui.size()
 width,height = pyautogui.size()
