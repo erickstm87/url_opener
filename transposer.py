@@ -6,9 +6,10 @@ import sys
 import os
 import time
 
-b = webbrowser.get('safari')
+b = webbrowser.get('firefox')
 #bashCommand = "/bin/bash kill.sh"
-bashCommand = "sudo killall 'Safari' "
+#bashCommand = "sudo killall 'Safari' "
+bashCommand = "sudo killall -r 'firefox'"
 new = 2
 new_file = []
 file1 = open('text.txt')
@@ -19,7 +20,7 @@ x = 0
 for i in new_file:
     b.open(i,new=new)
     #webbrowser.open(i,new=new)
-    time.sleep(20)
+    time.sleep(5)
     os.system(bashCommand)
     x += 1
     print(x) 
