@@ -14,27 +14,27 @@ b = webbrowser.get('safari')
 #bashCommand = "/bin/bash kill.sh"
 bashCommand = "sudo killall 'Safari' "
 #bashCommand = "sudo killall -r 'google'"
-new = 2
-new_file = []
-file1 = open('text.txt')
-for row in file1:
-    new_file.append(row)
+new = 1
+file1 = open('tester.txt', 'r')
 x = 0
-for i in new_file:
+for i in file1:
     x += 1
     b.open(i,new=new)
     #webbrowser.open(i,new=new)
     time.sleep(5)
+    '''pyautogui.click(271,811)
+    time.sleep(3)
+    os.system(bashCommand)'''
     if x==1:
-        pyautogui.click(386,335)
+        pyautogui.click(530,44)
         time.sleep(3)
         os.system(bashCommand)
     elif x==2:
-        pyautogui.click(378,335,duration=.9)
+        pyautogui.click(1015,90,duration=.9)
         time.sleep(3)
         os.system(bashCommand)
     else:
-        pyautogui.click(400,200,duration=.9)
+        pyautogui.click(454,264,duration=.9)
         time.sleep(3)
         os.system(bashCommand)
     
