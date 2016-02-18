@@ -6,6 +6,7 @@ import sys
 import os
 import time
 import pyautogui
+from subprocess import call
 #for installation of pyautogui on mac check out http://stackoverflow.com/questions/35051580/phyton3-pip-and-pyautogui-install-mac-remove-broken-python and go to the bottom 
 
 pyautogui.size()
@@ -22,10 +23,11 @@ for i in file1:
     b.open(i,new=new)
     #webbrowser.open(i,new=new)
     time.sleep(5)
-    '''pyautogui.click(271,811)
-    time.sleep(3)
-    os.system(bashCommand)'''
-    if x==1:
+    #pyautogui.click(553,412)
+    #time.sleep(3)
+    call(["screencapture", "screenshot(%s).jpg" % x]) 
+    os.system(bashCommand)
+    '''if x==1:
         pyautogui.click(530,44)
         time.sleep(3)
         os.system(bashCommand)
@@ -36,7 +38,7 @@ for i in file1:
     else:
         pyautogui.click(454,264,duration=.9)
         time.sleep(3)
-        os.system(bashCommand)
+        os.system(bashCommand)'''
     
     
     
