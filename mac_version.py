@@ -22,10 +22,12 @@ for i in file1:
     x += 1
     b.open(i,new=new)
     #webbrowser.open(i,new=new)
-    time.sleep(5)
-    #pyautogui.click(553,412)
-    #time.sleep(3)
+    time.sleep(3)
+    pyautogui.click(1015,105)
+    time.sleep(2)
     call(["screencapture", "screenshot(%s).jpg" % x]) 
+    pyautogui.click(879,197)
+    call(["screencapture", "screenshot_close(%s).jpg" % x])
     os.system(bashCommand)
     '''if x==1:
         pyautogui.click(530,44)
