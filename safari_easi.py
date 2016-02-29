@@ -17,30 +17,42 @@ bashCommand = "sudo killall 'Safari' "
 new = 1
 file1 = open('incon.txt', 'r')
 x = 0
+
 def incontent_noauto():
     j = 0
     b.open(i,new=new)
-    for j in range(0,16):
+    for j in range(0,37):
         pyautogui.press('down')
     time.sleep(2)
-    pyautogui.click(444,551)
+    pyautogui.press('s')#starts the ad
     time.sleep(2)
-    pyautogui.click(264,687)
+    pyautogui.moveTo(630,668)#this is to go full screen
+    time.sleep(1)
+    pyautogui.press('esc')
+    pyautogui.click('')#write this out to clickthrough
+    pyautogui.keydown('command')#closes out the tab
+    pyautogui.keypress('w')
+    pyautogui.keyup('command')
     time.sleep(2)
+    pyautogui.press('p')#pause the ad
+    time.sleep(1)
+    pyautogui.press('r')#resume the ad
+    for j in range(0,38):
+        pyautogui.press('up')
     os.system(bashCommand)
-
+'''
 def incontent_auto():
     j = 0 
     b.open(i,new=new)
     for j in range(0,16):
         pyautogui.press('down')
     #ad interactivity still to come
-    
+'''
 for i in file1:
     if 'incontent' and 'spotx_autoplay=0' in i:
         incontent_noauto()
-    elif 'incontent' and 'spotx_autoplay=&' in i:
-        incontent_auto()
+    '''elif 'incontent' and 'spotx_autoplay=&' in i:
+        incontent_auto()'''
     #webbrowser.open(i,new=new)
     
 
