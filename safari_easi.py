@@ -48,11 +48,29 @@ def incontent_auto():
         pyautogui.press('down')
     #ad interactivity still to come
 '''
+def instream_noauto():
+    pyautogui.press('s')#starts the ad
+    time.sleep(2)
+    pyautogui.moveTo(630,668)#this is to go full screen
+    time.sleep(1)
+    pyautogui.press('esc')
+    pyautogui.click('')#write this out to clickthrough
+    pyautogui.keydown('command')#closes out the tab
+    pyautogui.keypress('w')
+    pyautogui.keyup('command')
+    time.sleep(2)
+    pyautogui.press('p')#pause the ad
+    time.sleep(1)
+    pyautogui.press('r')#resume the ad
+    os.system(bashCommand)
+
 for i in file1:
     if 'incontent' and 'spotx_autoplay=0' in i:
         incontent_noauto()
     '''elif 'incontent' and 'spotx_autoplay=&' in i:
         incontent_auto()'''
+    elif 'instream' and 'spotx_autoplay=0' in i:
+        instream_noauto()
     #webbrowser.open(i,new=new)
     
 
