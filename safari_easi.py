@@ -15,15 +15,16 @@ b = webbrowser.get('safari')
 bashCommand = "sudo killall 'Safari' "
 #bashCommand = "sudo killall -r 'google'"
 new = 1
-file1 = open('incon.txt', 'r')
+file1 = open('another.txt', 'r')
+#file1 = raw_input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.csv'
 x = 0
 
 def incontent_noauto():
     j = 0
     b.open(i,new=new)
+    time.sleep(20)
     for j in range(0,37):
         pyautogui.press('down')
-    time.sleep(2)
     pyautogui.press('s')#starts the ad
     time.sleep(2)
     #pyautogui.click('')#write this out to clickthrough
@@ -50,7 +51,7 @@ def incontent_auto():
     #ad interactivity still to come
 '''
 def instream_noauto():
-    time.sleep(2)
+    time.sleep(15)
     pyautogui.press('s')#starts the ad
     time.sleep(2)
     pyautogui.click('')#write this out to clickthrough
@@ -68,7 +69,7 @@ def instream_noauto():
     os.system(bashCommand)
 
 def instream_auto():
-    time.sleep(2)
+    time.sleep(15)
     '''pyautogui.click('')#write this out to clickthrough
     pyautogui.keydown('command')#closes out the tab
     pyautogui.keypress('w')
@@ -84,16 +85,18 @@ def instream_auto():
     time.sleep(10)
     os.system(bashCommand)
 
-for i in file1:
-    if 'incontent' and 'spotx_autoplay=0' in i:
-        incontent_noauto()
-    elif 'instream' and 'spotx_autoplay=0' in i:
-        instream_noauto()
-    elif 'instrem' and 'spotx_autoplay=&' in i:
-        instream_auto()
-    '''elif 'incontent' and 'spotx_autoplay=&' in i:
-    incontent_auto()'''
-    #webbrowser.open(i,new=new)
+def main():
+    for i in file1:
+        if 'incontent' and 'spotx_autoplay=0' in i:
+            incontent_noauto()
+        elif 'instream' and 'spotx_autoplay=0' in i:
+            instream_noauto()
+        elif 'instrem' and 'spotx_autoplay=&' in i:
+            instream_auto()
+        '''elif 'incontent' and 'spotx_autoplay=&' in i:
+        incontent_auto()'''
+        #webbrowser.open(i,new=new)
+main()
     
 
     
