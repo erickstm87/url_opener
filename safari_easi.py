@@ -19,11 +19,13 @@ file1 = open('incon.txt', 'r')
 x = 0
 
 def ad_spotter():
-    x,y = pyautogui.locateCenterOnScreen('ad_here.png')
-    pyautogui.moveTo(x,(y-10))
+    x,y = pyautogui.locateCenterOnScreen('ad_1.png')
+    l,s = (int(x/2),int(y/2))
+    new_center = ((l+125),(s+125))
+    pyautogui.moveTo(new_center)
 
 def full_screen():
-    time.sleep(2)
+    time.sleep(10)
     x, y = pyautogui.locateCenterOnScreen('full_screen.png')
     pyautogui.click(x,y)
     time.sleep(3)
@@ -127,7 +129,7 @@ def instream_auto(i):
 
 def main():
 
-    for i in file1:
+    '''for i in file1:
         #try:
         if 'incontent' and 'spotx_autoplay=0' in i:
             incontent_noauto(i)
@@ -135,7 +137,7 @@ def main():
             instream_noauto(i)
         elif 'instrem' and 'spotx_autoplay=&' in i:
             instream_auto(i)
-        '''except KeyboardInterrupt: 
+        except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or c to copy the url to the failed file.)")
             try:
                 response = raw_input()
@@ -148,6 +150,7 @@ def main():
             except KeyboardInterrupt:
                 print ('Resuming...')
                 continue'''
+    ad_spotter()
 main()
     
 
