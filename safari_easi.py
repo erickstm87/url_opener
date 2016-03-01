@@ -96,6 +96,17 @@ def main():
         '''elif 'incontent' and 'spotx_autoplay=&' in i:
         incontent_auto()'''
         #webbrowser.open(i,new=new)
+        except KeyboardInterrupt:
+            print '\nPausing... (Hit ENTER to continue, type quit to exit, or c to copy the url to the failed file.)'
+            try:
+                response = raw_input()
+                if response == 'quit':
+                    exit()
+                elif response == 'c':
+
+                except KeyboardInterrupt:
+                    print 'Resuming...'
+                    continue
 main()
     
 
