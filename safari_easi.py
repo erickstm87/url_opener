@@ -19,10 +19,10 @@ file1 = open('another.txt', 'r')
 #file1 = raw_input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.csv'
 x = 0
 
-def incontent_noauto():
+def incontent_noauto(i):
     j = 0
     b.open(i,new=new)
-    time.sleep(20)
+    time.sleep(3)
     for j in range(0,37):
         pyautogui.press('down')
     pyautogui.press('s')#starts the ad
@@ -50,8 +50,9 @@ def incontent_auto():
         pyautogui.press('down')
     #ad interactivity still to come
 '''
-def instream_noauto():
-    time.sleep(15)
+def instream_noauto(i):
+    b.open(i,new=new)
+    time.sleep(3)
     pyautogui.press('s')#starts the ad
     time.sleep(2)
     pyautogui.click('')#write this out to clickthrough
@@ -68,8 +69,9 @@ def instream_noauto():
     pyautogui.press('r')#resume the ad
     os.system(bashCommand)
 
-def instream_auto():
-    time.sleep(15)
+def instream_auto(i):
+    b.open(i,new=new)
+    time.sleep(3)
     '''pyautogui.click('')#write this out to clickthrough
     pyautogui.keydown('command')#closes out the tab
     pyautogui.keypress('w')
@@ -86,27 +88,28 @@ def instream_auto():
     os.system(bashCommand)
 
 def main():
+    
     for i in file1:
-        if 'incontent' and 'spotx_autoplay=0' in i:
-            incontent_noauto()
-        elif 'instream' and 'spotx_autoplay=0' in i:
-            instream_noauto()
-        elif 'instrem' and 'spotx_autoplay=&' in i:
-            instream_auto()
-        '''elif 'incontent' and 'spotx_autoplay=&' in i:
-        incontent_auto()'''
-        #webbrowser.open(i,new=new)
-        except KeyboardInterrupt:
-            print '\nPausing... (Hit ENTER to continue, type quit to exit, or c to copy the url to the failed file.)'
+        try:
+            if 'incontent' and 'spotx_autoplay=0' in i:
+                incontent_noauto(i)
+            elif 'instream' and 'spotx_autoplay=0' in i:
+                instream_noauto(i)
+            elif 'instrem' and 'spotx_autoplay=&' in i:
+                instream_auto(i)
+        except KeyboardInterrupt: 
+            print ("\nPausing... (Hit ENTER to continue, type quit to exit, or c to copy the url to the failed file.)")
             try:
                 response = raw_input()
                 if response == 'quit':
                     exit()
                 elif response == 'c':
-
-                except KeyboardInterrupt:
-                    print 'Resuming...'
-                    continue
+                    with open('problem.txt', 'a') as f:
+                        f.write(i+'\n')
+                        continue
+            except KeyboardInterrupt:
+                print ('Resuming...')
+                continue
 main()
     
 
