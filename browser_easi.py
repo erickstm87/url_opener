@@ -12,7 +12,7 @@ import random
 
 pyautogui.size()
 width,height = pyautogui.size()
-'''b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
+b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
 if b_rowser == 'safari':
     b = webbrowser.get('safari')
     bashCommand = "sudo killall 'Safari' "
@@ -21,25 +21,32 @@ elif b_rowser == 'chrome':
     bashCommand = "sudo killall 'google' "
 elif b_rowser == 'firefox':
     b = webbrowser.get('firefox')
-    bashCommand = "sudo killall 'firefox' "'''
+    bashCommand = "sudo killall 'firefox' "
 
 new = 1
 file1 = open('incon.txt', 'r')
 #file1 = raw_input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.csv'
 x = 0
 
-def ad_spotter(i):
-    try:
-        x,y = pyautogui.locateCenterOnScreen('ad_1.png')
-        l,s = (int(x/2),int(y/2))
-        new_center = ((l+125),(s+125))
-        pyautogui.moveTo(new_center)
-        pyautogui.click(new_center)
-    except:
+def ad_spotter():
+    #try:
+    if b_rowser == 'safari':
+        l = ('saf_ad.png')
+    elif b_rowser == 'firefox':
+        l = ('fire_ad.png')
+    elif b_rowser == 'chrome':
+        l = ('chrome_ad.png')
+    x,y = pyautogui.locateCenterOnScreen(l)
+    l,s = (int(x/2),int(y/2))
+    new_center = ((l+125),(s+125))
+    print(new_center)
+    pyautogui.moveTo(new_center)
+    pyautogui.click(new_center)
+    '''except:
         type == 'NoneType'
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
-                        f.write('NO AD FOUND'+ i+'\n')
+                        f.write('NO AD FOUND'+ i+'\n')'''
 
 def full_screen():
     time.sleep(1)
@@ -78,7 +85,7 @@ def close_tab():
     pyautogui.press('w')
     pyautogui.keyUp('command')
 
-def slots(i):
+'''def slots(i):
     if '92569' in i:
         try:
             foo = ['m_twitter.png','m_pinterest.png','m_facebook.png']
@@ -90,7 +97,11 @@ def slots(i):
             #pyautogui.click(x,y)
             print(x,y)
         except:
-            print('stuff')
+        type == 'NoneType'
+        print('no ad could be found')
+        with open('problem.txt', 'a') as f:
+                        f.write('SLOT ISSUE,'+ i+'\n')'''
+
     
 def incontent_noauto(i):
     b.open(i,new=new)
@@ -102,7 +113,7 @@ def incontent_noauto(i):
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
-    time.sleep(15)
+    time.sleep(7)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
@@ -117,10 +128,9 @@ def incontent_auto(i):
     time.sleep(2)
     pyautogui.press('r')
     time.sleep(2)
-    full_screen()
-    time.sleep(2)
-    pyautogui.press('esc')
-    time.sleep(10)
+    click_through()
+    #full_screen()
+    time.sleep(8)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
@@ -136,11 +146,11 @@ def instream_noauto(i):
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
-    time.sleep(15)
+    time.sleep(1)
+    click_through()
+    time.sleep(10)
     #os.system(bashCommand)
-    pyautogui.keyDown('command')
-    pyautogui.press('w')
-    pyautogui.keyUp('command')
+    close_tab()
 
 def instream_auto(i):
     b.open(i,new=new)
@@ -148,13 +158,14 @@ def instream_auto(i):
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
+    time.sleep(2)
+    click_through()
     time.sleep(10)
     #os.system(bashCommand)
-    pyautogui.keyDown('command')
-    pyautogui.press('w')
-    pyautogui.keyUp('command')
+    close_tab()
 
 def main():
+    ad_spotter()
     '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
