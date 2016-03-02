@@ -122,7 +122,6 @@ def incontent_auto(i):
     b.open(i,new=new)
     time.sleep(3)
     scroll_down()
-    ad_spotter()
     time.sleep(5)
     pyautogui.press('p')
     time.sleep(2)
@@ -169,6 +168,8 @@ def main():
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
                 incontent_noauto(i)
+            elif 'inconent' and 'spotx_autoplay=&' in i:
+                incontent_auto(i)
             elif 'instream' and 'spotx_autoplay=0' in i:
                 instream_noauto(i)
             elif 'instrem' and 'spotx_autoplay=&' in i:
@@ -181,9 +182,11 @@ def main():
                 if response == 'quit':
                     sys.exit()
                 elif response == 'c':
-                    with open('problem.txt', 'a') as f:
-                        f.write(i+'\n')
-                        continue
+                    message = input('would you like to submit an error message with the URL? type our yes or no \n')
+                    if message == 'yes'
+                        with open('problem.txt', 'a') as f:
+                            f.write(message+','+ i+'\n')
+                            continue
             except KeyboardInterrupt:
                 print ('Resuming...')
                 continue
