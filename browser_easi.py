@@ -39,14 +39,14 @@ def ad_spotter(i):
         x,y = pyautogui.locateCenterOnScreen(l)
         l,s = (int(x/2),int(y/2))
         new_center = ((l+125),(s+125))
-        print(new_center)
+        #print(new_center)
         pyautogui.moveTo(new_center)
         pyautogui.click(new_center)
     except:
         type == 'NoneType'
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
-                        f.write('NO AD FOUND'+ i+'\n')
+            f.write('NO AD FOUND'+ i+'\n')
 
 def full_screen():
     time.sleep(1)
@@ -63,7 +63,7 @@ def scroll_down():
         for j in range(0,26):
             pyautogui.press('down')
     elif b_rowser == 'chrome':
-        for j in range(0,29):
+        for j in range(0,33):
             pyautogui.press('down')
     time.sleep(2)
 
@@ -107,6 +107,7 @@ def incontent_noauto(i):
     b.open(i,new=new)
     time.sleep(3)
     scroll_down()
+    time.sleep(1)
     pyautogui.press('s')
     time.sleep(2)
     click_through(i)
@@ -122,7 +123,9 @@ def incontent_auto(i):
     b.open(i,new=new)
     time.sleep(3)
     scroll_down()
-    time.sleep(5)
+    time.sleep(1)
+    pyautogui.click(663,412)
+    time.sleep(3)
     pyautogui.press('p')
     time.sleep(2)
     pyautogui.press('r')
@@ -183,12 +186,13 @@ def main():
                     sys.exit()
                 elif response == 'c':
                     message = input('would you like to submit an error message with the URL? type our yes or no \n')
-                    if message == 'yes'
+                    if message == 'yes':
                         with open('problem.txt', 'a') as f:
                             f.write(message+','+ i+'\n')
                             continue
             except KeyboardInterrupt:
                 print ('Resuming...')
+                close_tab()
                 continue
 main()
     
