@@ -9,6 +9,7 @@ import pyautogui
 from subprocess import call
 import random
 #for installation of pyautogui on mac check out http://stackoverflow.com/questions/35051580/phyton3-pip-and-pyautogui-install-mac-remove-broken-python and go to the bottom 
+#sed command to eliminate all iframes on the urls (sed -i -e 's/iframe=./iframe=0/g')
 
 #file1 = input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.txt'
 pyautogui.size()
@@ -65,7 +66,7 @@ def scroll_down():
     elif b_rowser == 'chrome':
         for j in range(0,33):
             pyautogui.press('down')
-    time.sleep(2)
+    #time.sleep(2)
 
 def click_through(i):
     ad_spotter(i)
@@ -114,14 +115,14 @@ def incontent_noauto(i):
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
-    time.sleep(7)
+    time.sleep(2)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
 
 def incontent_auto(i):
     b.open(i,new=new)
-    time.sleep(3)
+    time.sleep(2)
     scroll_down()
     time.sleep(1)
     pyautogui.click(663,412)
@@ -129,8 +130,9 @@ def incontent_auto(i):
     pyautogui.press('p')
     time.sleep(2)
     pyautogui.press('r')
-    time.sleep(2)
+    time.sleep(1)
     click_through(i)
+    pyautogui.press('r')
     #full_screen()
     time.sleep(8)
     scroll_up()
@@ -178,21 +180,24 @@ def main():
             elif 'instrem' and 'spotx_autoplay=&' in i:
                 instream_auto(i)
         except KeyboardInterrupt: 
-            pyautogui.press('p')
-            print ("\nPausing... (Hit ENTER to continue, type quit to exit, or c to copy the url to the failed file.)")
+            print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
             try:
                 response = input()
                 if response == 'quit':
-                    sys.exit()
-                elif response == 'c':
-                    message = input('would you like to submit an error message with the URL? type our yes or no \n')
+                    break
+                elif response == 'copy':
+                    message = input('would you like to submit an error message with the URL? type out yes or no \n')
                     if message == 'yes':
+                        e_message = input('what would you like your message to be? \n')
                         with open('problem.txt', 'a') as f:
-                            f.write(message+','+ i+'\n')
+                            f.write(e_message+','+ i+'\n')
+                            continue
+                    elif message == 'no':
+                        with open('problem.txt', 'a') as f:
+                            f.write(i+'\n')
                             continue
             except KeyboardInterrupt:
                 print ('Resuming...')
-                close_tab()
                 continue
 main()
     
