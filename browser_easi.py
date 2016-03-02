@@ -12,6 +12,7 @@ import random
 #sed command to eliminate all iframes on the urls (sed -i -e 's/iframe=./iframe=0/g')
 
 #file1 = input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.txt'
+
 pyautogui.size()
 width,height = pyautogui.size()
 b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
@@ -184,6 +185,7 @@ def main():
             try:
                 response = input()
                 if response == 'quit':
+                    os.system(bashCommand)
                     break
                 elif response == 'copy':
                     message = input('would you like to submit an error message with the URL? type out yes or no \n')
@@ -196,8 +198,13 @@ def main():
                         with open('problem.txt', 'a') as f:
                             f.write(i+'\n')
                             continue
+                    else:
+                        print ('Resuming...')
+                        os.system(bashCommand)
+                        continue
             except KeyboardInterrupt:
-                print ('Resuming...')
+                print ('resuming')
+                os.system(bashCommand)
                 continue
 main()
     
