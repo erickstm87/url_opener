@@ -7,11 +7,12 @@ import os
 import time
 import pyautogui
 from subprocess import call
+import random
 #for installation of pyautogui on mac check out http://stackoverflow.com/questions/35051580/phyton3-pip-and-pyautogui-install-mac-remove-broken-python and go to the bottom 
 
 pyautogui.size()
 width,height = pyautogui.size()
-b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
+'''b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
 if b_rowser == 'safari':
     b = webbrowser.get('safari')
     bashCommand = "sudo killall 'Safari' "
@@ -20,7 +21,7 @@ elif b_rowser == 'chrome':
     bashCommand = "sudo killall 'google' "
 elif b_rowser == 'firefox':
     b = webbrowser.get('firefox')
-    bashCommand = "sudo killall 'firefox' "
+    bashCommand = "sudo killall 'firefox' "'''
 
 new = 1
 file1 = open('incon.txt', 'r')
@@ -28,13 +29,21 @@ file1 = open('incon.txt', 'r')
 x = 0
 
 def ad_spotter():
-    x,y = pyautogui.locateCenterOnScreen('ad_1.png')
-    l,s = (int(x/2),int(y/2))
-    new_center = ((l+125),(s+125))
-    pyautogui.moveTo(new_center)
+    try:
+        x,y = pyautogui.locateCenterOnScreen('ad_1.png')
+        l,s = (int(x/2),int(y/2))
+        new_center = ((l+125),(s+125))
+        pyautogui.moveTo(new_center)
+        pyautogui.click(new_center)
+    except:
+        type == 'NoneType'
+        print('no ad could be found')
+        with open('problem.txt', 'a') as f:
+                        f.write(i+'\n'+' URL PROBLEM')
+        main()
 
 def full_screen():
-    time.sleep(10)
+    time.sleep(1)
     x, y = pyautogui.locateCenterOnScreen('full_screen.png')
     pyautogui.click(x,y)
     time.sleep(3)
@@ -45,23 +54,21 @@ def scroll_down():
         for j in range(0,37):
             pyautogui.press('down')
     elif b_rowser == 'firefox':
-        for j in range(0,24):
+        for j in range(0,26):
             pyautogui.press('down')
     elif b_rowser == 'chrome':
         for j in range(0,29):
             pyautogui.press('down')
-    pyautogui.press('s')#starts the ad
     time.sleep(2)
 
 def click_through():
     ad_spotter()
     for i in range(0,3):
         pyautogui.click()
-    time.sleep(3)
-    pyautogui.keyDown('command')
-    pyautogui.press('w')
-    pyautogui.keyUp('command')
-    
+    time.sleep(2)
+    pyautogui.click()
+    close_tab()
+
 def scroll_up():
     j = 0
     for j in range(0,38):
@@ -72,15 +79,28 @@ def close_tab():
     pyautogui.press('w')
     pyautogui.keyUp('command')
 
+def slots(i):
+    if '92569' in i:
+        try:
+            foo = ['m_twitter.png','m_pinterest.png','m_facebook.png']
+            slot = random.choice(foo)
+            print(slot)
+            x,y = pyautogui.locateCenterOnScreen((slot))
+            x,y = int(x/2),(int(y/2))
+            print(x,y)
+            #pyautogui.moveTo(x,y)
+            #pyautogui.click(x,y)
+    '''elif '95772' in i:
+        try:
+            foo = []'''
+
 def incontent_noauto(i):
     b.open(i,new=new)
     time.sleep(3)
     scroll_down()
-    pyautogui.click(910,203)
-    ad_spotter()
-    full_screen()
-    pyautogui.press('esc')
+    pyautogui.press('s')
     time.sleep(2)
+    click_through()
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
@@ -93,15 +113,16 @@ def incontent_auto(i):
     b.open(i,new=new)
     time.sleep(3)
     scroll_down()
-    pyautogui.click(910,203)
     ad_spotter()
     time.sleep(5)
     pyautogui.press('p')
     time.sleep(2)
     pyautogui.press('r')
-    time.sleep(15)
+    time.sleep(2)
     full_screen()
+    time.sleep(2)
     pyautogui.press('esc')
+    time.sleep(10)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
@@ -111,15 +132,9 @@ def instream_noauto(i):
     time.sleep(3)
     pyautogui.press('s')#starts the ad
     time.sleep(2)
-    #pyautogui.click('')#write this out to clickthrough
-    '''pyautogui.keydown('command')#closes out the tab
-    pyautogui.keypress('w')
-    pyautogui.keyup('command')'''
-    time.sleep(2)
     #pyautogui.moveTo(630,668)#this is to go full screen
     #time.sleep(1)
     #pyautogui.press('esc')
-    time.sleep(2)
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
@@ -132,15 +147,6 @@ def instream_noauto(i):
 def instream_auto(i):
     b.open(i,new=new)
     time.sleep(3)
-    '''pyautogui.click('')#write this out to clickthrough
-    pyautogui.keydown('command')#closes out the tab
-    pyautogui.keypress('w')
-    pyautogui.keyup('command')'''
-    time.sleep(2)
-    #pyautogui.moveTo(630,668)#this is to go full screen
-    time.sleep(1)
-    #pyautogui.press('esc')
-    time.sleep(1)
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
@@ -151,8 +157,8 @@ def instream_auto(i):
     pyautogui.keyUp('command')
 
 def main():
-
-    for i in file1:
+    slots()
+    '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
                 incontent_noauto(i)
@@ -161,6 +167,7 @@ def main():
             elif 'instrem' and 'spotx_autoplay=&' in i:
                 instream_auto(i)
         except KeyboardInterrupt: 
+            pyautogui.press('p')
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or c to copy the url to the failed file.)")
             try:
                 response = input()
@@ -172,7 +179,7 @@ def main():
                         continue
             except KeyboardInterrupt:
                 print ('Resuming...')
-                continue
+                continue'''
 main()
     
 
