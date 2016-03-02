@@ -28,7 +28,7 @@ file1 = open('incon.txt', 'r')
 #file1 = raw_input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.csv'
 x = 0
 
-def ad_spotter():
+def ad_spotter(i):
     try:
         x,y = pyautogui.locateCenterOnScreen('ad_1.png')
         l,s = (int(x/2),int(y/2))
@@ -39,8 +39,7 @@ def ad_spotter():
         type == 'NoneType'
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
-                        f.write(i+'\n'+' URL PROBLEM')
-        main()
+                        f.write('NO AD FOUND'+ i+'\n')
 
 def full_screen():
     time.sleep(1)
@@ -87,13 +86,12 @@ def slots(i):
             print(slot)
             x,y = pyautogui.locateCenterOnScreen((slot))
             x,y = int(x/2),(int(y/2))
-            print(x,y)
             #pyautogui.moveTo(x,y)
             #pyautogui.click(x,y)
-    '''elif '95772' in i:
-        try:
-            foo = []'''
-
+            print(x,y)
+        except:
+            print('stuff')
+    
 def incontent_noauto(i):
     b.open(i,new=new)
     time.sleep(3)
@@ -157,7 +155,6 @@ def instream_auto(i):
     pyautogui.keyUp('command')
 
 def main():
-    slots()
     '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
