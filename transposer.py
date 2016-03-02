@@ -10,8 +10,8 @@ import pyautogui
 
 pyautogui.size()
 width,height = pyautogui.size()
-#b = webbrowser.get('firefox')
-bashCommand = "/bin/bash kill.sh"
+b = webbrowser.get('safari')
+#bashCommand = "/bin/bash kill.sh"
 #bashCommand = "sudo killall 'Safari' "
 #bashCommand = "sudo killall -r 'google'"
 new = 2
@@ -19,23 +19,26 @@ new_file = []
 file1 = open('text.txt')
 for row in file1:
 	new_file.append(row)
-np.transpose(new_file)
+#p.transpose(new_file)
 x = 0
-for i in new_file:
+#l = numpy.array(new_file)
+new_file = np.matrix(new_file)
+j = np.transpose(new_file)
+for i in j:
     x += 1
-    #b.open(i,new=new)
-    webbrowser.open(i,new=new)
+    b.open(i,new=new)
+    #webbrowser.open(i,new=new)
     time.sleep(5)
     if x==1:
-        pyautogui.click(418,410)
+        pyautogui.click(-446,-938)
         time.sleep(3)
         os.system(bashCommand)
     elif x==2:
-        pyautogui.click(1173,483,duration=.9)
+        pyautogui.click(378,-885,duration=.9)
         time.sleep(3)
         os.system(bashCommand)
     else:
-        pyautogui.click(277,705,duration=.9)
+        pyautogui.click(-24,-289,duration=.9)
         time.sleep(3)
         os.system(bashCommand)
     
