@@ -49,12 +49,21 @@ def ad_spotter(i):
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
             f.write('NO AD FOUND'+ i+'\n')
+            main()
 
-def full_screen():
-    time.sleep(1)
-    x, y = pyautogui.locateCenterOnScreen('full_screen.png')
-    pyautogui.click(x,y)
-    time.sleep(3)
+def full_screen(i):
+    try:
+        ad_spotter(i)
+        time.sleep(1)
+        x, y = pyautogui.locateCenterOnScreen('full_screen.png')
+        pyautogui.click(x,y)
+        time.sleep(3)
+    except:
+        type == 'NoneType'
+        print('couldnt find full screen')
+        with open('problem.txt', 'a') as f:
+            f.write('FULL SCREEN NOT FOUND'+ i+'\n')
+            main()
 
 def scroll_down():
     j = 0
@@ -76,6 +85,7 @@ def click_through(i):
     time.sleep(2)
     pyautogui.click()
     close_tab()
+    #pyautogui.click(663,412)
 
 def scroll_up():
     j = 0
@@ -116,6 +126,9 @@ def incontent_noauto(i):
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
+    full_screen(i)
+    pyautogui.press('esc')
+    click_through(i)
     time.sleep(2)
     scroll_up()
     #os.system(bashCommand)
@@ -132,6 +145,8 @@ def incontent_auto(i):
     time.sleep(2)
     pyautogui.press('r')
     time.sleep(1)
+    full_screen(i)
+    pyautogui.press('esc')
     click_through(i)
     pyautogui.press('r')
     #full_screen()
@@ -153,6 +168,7 @@ def instream_noauto(i):
     pyautogui.press('r')#resume the ad
     time.sleep(1)
     click_through(i)
+    pyautogui.press('r')
     time.sleep(10)
     #os.system(bashCommand)
     close_tab()
@@ -185,18 +201,20 @@ def main():
             try:
                 response = input()
                 if response == 'quit':
-                    os.system(bashCommand)
-                    break
+                    #os.system(bashCommand)
+                    quit()
                 elif response == 'copy':
                     message = input('would you like to submit an error message with the URL? type out yes or no \n')
                     if message == 'yes':
                         e_message = input('what would you like your message to be? \n')
                         with open('problem.txt', 'a') as f:
-                            f.write(e_message+','+ i+'\n')
+                            f.write(e_message.upper()+','+ i+'\n')
+                            os.system(bashCommand)
                             continue
                     elif message == 'no':
                         with open('problem.txt', 'a') as f:
                             f.write(i+'\n')
+                            os.system(bashCommand)
                             continue
                     else:
                         print ('Resuming...')
