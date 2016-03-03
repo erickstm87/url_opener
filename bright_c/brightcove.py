@@ -15,7 +15,7 @@ import random
 
 pyautogui.size()
 width,height = pyautogui.size()
-b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
+'''b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
 if b_rowser == 'safari':
     b = webbrowser.get('safari')
     bashCommand = "sudo killall 'Safari' "
@@ -27,7 +27,7 @@ elif b_rowser == 'firefox':
     bashCommand = "sudo killall 'firefox' "
 new = 1
 file1 = open('bright_urls.txt', 'r')
-x = 0
+x = 0'''
 
 def ad_spotter():
     try:
@@ -35,32 +35,38 @@ def ad_spotter():
         l,s = (int(x/2),int(y/2))
         pyautogui.moveTo(l,s)
         pyautogui.click(l,s)
-        pyautogui.click(l,s)
+        #pyautogui.click(l,s)
+        return(l,s)
     except:
         type=='NoneType'
         print('couldnt find play icon')
-
+    
 def full_screen(i):
     try:
-        ad_spotter(i)
-        time.sleep(1)
-        x, y = pyautogui.locateCenterOnScreen('full_screen.png')
-        pyautogui.click(x,y)
-        time.sleep(3)
+        h,k = pyautogui.locateCenterOnScreen('full_screen.png')
     except:
         type == 'NoneType'
         print('couldnt find full screen')
         with open('problem.txt', 'a') as f:
             f.write('FULL SCREEN NOT FOUND'+ i+'\n')
             main()
+def resume():
+    print('running resume')
+    f,g = pyautogui.locateCenterOnScreen('play.png')
+    r,f = (int(f/2),int(g/2))
+    print(r,f)
+    pyautogui.click(r,f)
+    if type=="NoneType":
+        print('couldnt find it')
 
-def click_through(i):
-    ad_spotter(i)
-    for i in range(0,3):
-        pyautogui.click()
+def click_through():
+    x,y = ad_spotter()
+    pyautogui.click(x,y)
     time.sleep(2)
-    pyautogui.click()
+    pyautogui.click(x,y)
+    time.sleep(2)
     close_tab()
+    #resume()
     #pyautogui.click(663,412)
 
 def close_tab():
@@ -98,7 +104,8 @@ def brightcove_auto(i):
     close_tab()
 
 def main():
-    ad_spotter()
+    click_through()
+    resume()
     '''das_auto = input('are these urls autoplay or not? type out yes or no \n')
     for i in file1:
         try:
