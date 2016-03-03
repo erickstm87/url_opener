@@ -41,21 +41,28 @@ def ad_spotter():
         type=='NoneType'
         print('couldnt find play icon')
     
-def full_screen(i):
+def full_screen(x,z):
     try:
-        h,k = pyautogui.locateCenterOnScreen('full_screen.png')
+        #h,k = pyautogui.locateCenterOnScreen('full_screen.png')
+        i,f = (847+x,z)
+        print(i,f)
+        pyautogui.moveTo(i,f)
+        time.sleep(1)
+        pyautogui.click(i,f)
     except:
         type == 'NoneType'
         print('couldnt find full screen')
-        with open('problem.txt', 'a') as f:
-            f.write('FULL SCREEN NOT FOUND'+ i+'\n')
-            main()
+        #with open('problem.txt', 'a') as f:
+            #f.write('FULL SCREEN NOT FOUND'+ i+'\n')
+            #main()
 def resume():
     print('running resume')
     f,g = pyautogui.locateCenterOnScreen('play.png')
     r,f = (int(f/2),int(g/2))
     print(r,f)
+    pyautogui.moveTo(r,f)
     pyautogui.click(r,f)
+    return(r,f)
     if type=="NoneType":
         print('couldnt find it')
 
@@ -105,7 +112,10 @@ def brightcove_auto(i):
 
 def main():
     click_through()
-    resume()
+    (x,z) = resume()
+    print(x,z)
+    full_screen(x,z)
+    #full_screen(x)
     '''das_auto = input('are these urls autoplay or not? type out yes or no \n')
     for i in file1:
         try:
