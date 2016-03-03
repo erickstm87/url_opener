@@ -15,7 +15,7 @@ import random
 
 pyautogui.size()
 width,height = pyautogui.size()
-'''b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
+b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
 if b_rowser == 'safari':
     b = webbrowser.get('safari')
     bashCommand = "sudo killall 'Safari' "
@@ -27,7 +27,7 @@ elif b_rowser == 'firefox':
     bashCommand = "sudo killall 'firefox' "
 new = 1
 file1 = open('bright_urls.txt', 'r')
-x = 0'''
+x = 0
 
 def ad_spotter():
     try:
@@ -43,23 +43,24 @@ def ad_spotter():
     
 def full_screen(x,z):
     try:
-        #h,k = pyautogui.locateCenterOnScreen('full_screen.png')
         i,f = (847+x,z)
         print(i,f)
         pyautogui.moveTo(i,f)
         time.sleep(1)
         pyautogui.click(i,f)
+        time.sleep(1)
+        pyautogui.press('esc')
+        pyautogui.press('esc')
     except:
         type == 'NoneType'
-        print('couldnt find full screen')
-        #with open('problem.txt', 'a') as f:
-            #f.write('FULL SCREEN NOT FOUND'+ i+'\n')
-            #main()
+        with open('problem_b.txt', 'a') as f:
+            f.write('FULL SCREEN NOT FOUND'+ i+'\n')
+            
 def resume():
-    print('running resume')
+    #print('running resume')
     f,g = pyautogui.locateCenterOnScreen('play.png')
     r,f = (int(f/2),int(g/2))
-    print(r,f)
+    #print(r,f)
     pyautogui.moveTo(r,f)
     pyautogui.click(r,f)
     return(r,f)
@@ -73,9 +74,7 @@ def click_through():
     pyautogui.click(x,y)
     time.sleep(2)
     close_tab()
-    #resume()
-    #pyautogui.click(663,412)
-
+    
 def close_tab():
     pyautogui.keyDown('command')
     pyautogui.press('w')
@@ -95,28 +94,35 @@ def close_tab():
         except:
         type == 'NoneType'
         print('no ad could be found')
-        with open('problem.txt', 'a') as f:
+        with open('problem_b.txt', 'a') as f:
                         f.write('SLOT ISSUE,'+ i+'\n')'''
 
 def brightcove_noauto(i):
     b.open(i,new=new)
-    
+    time.sleep(2)
+    ad_spotter()
+    click_through()
+    x,z = resume()
+    full_screen(x,z)
+    time.sleep(9)
     close_tab()
 
 def brightcove_auto(i):
     b.open(i,new=new)
-    time.sleep(3)
-    
-    #os.system(bashCommand)
-    close_tab()
-
-def main():
+    time.sleep(2)
     click_through()
-    (x,z) = resume()
-    print(x,z)
+    x,z = resume()
     full_screen(x,z)
+    time.sleep(9)
+    close_tab()
+   
+def main():
+    #click_through()
+    #(x,z) = resume()
+    #print(x,z)
+    #full_screen(x,z)
     #full_screen(x)
-    '''das_auto = input('are these urls autoplay or not? type out yes or no \n')
+    das_auto = input('are these urls autoplay or not? type out yes or no \n')
     for i in file1:
         try:
             if das_auto == 'yes':
@@ -134,12 +140,12 @@ def main():
                     message = input('would you like to submit an error message with the URL? type out yes or no \n')
                     if message == 'yes':
                         e_message = input('what would you like your message to be? \n')
-                        with open('problem.txt', 'a') as f:
+                        with open('problem_b.txt', 'a') as f:
                             f.write(e_message.upper()+','+ i+'\n')
                             os.system(bashCommand)
                             continue
                     elif message == 'no':
-                        with open('problem.txt', 'a') as f:
+                        with open('problem_b.txt', 'a') as f:
                             f.write(i+'\n')
                             os.system(bashCommand)
                             continue
@@ -150,7 +156,7 @@ def main():
             except KeyboardInterrupt:
                 print ('resuming')
                 os.system(bashCommand)
-                continue'''
+                continue
 main()
     
 
