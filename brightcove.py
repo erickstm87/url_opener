@@ -26,29 +26,19 @@ elif b_rowser == 'firefox':
     b = webbrowser.get('firefox')
     bashCommand = "sudo killall 'firefox' "
 new = 1
-file1 = open('easi_urls.txt', 'r')
+file1 = open('bright_urls.txt', 'r')
 x = 0
 
-def ad_spotter(i):
+def ad_spotter():
     try:
-        if b_rowser == 'safari':
-            l = ('saf_ad.png')
-        elif b_rowser == 'firefox':
-            l = ('fire_ad.png')
-        elif b_rowser == 'chrome':
-            l = ('chrome_ad.png')
-        x,y = pyautogui.locateCenterOnScreen(l)
+        x,y = pyautogui.locateCenterOnScreen('play_icon.png')
         l,s = (int(x/2),int(y/2))
-        new_center = ((l+125),(s+125))
-        #print(new_center)
-        pyautogui.moveTo(new_center)
-        pyautogui.click(new_center)
+        pyautogui.moveTo(l,s)
+        pyautogui.click(l,s)
+        pyautogui.click(l,s)
     except:
-        type == 'NoneType'
-        print('no ad could be found')
-        with open('problem.txt', 'a') as f:
-            f.write('NO AD FOUND'+ i+'\n')
-            main()
+        type=='NoneType'
+        print('couldnt find play icon')
 
 def full_screen(i):
     try:
@@ -97,36 +87,19 @@ def close_tab():
 
 def brightcove_noauto(i):
     b.open(i,new=new)
-    time.sleep(3)
-    pyautogui.press('s')#starts the ad
-    time.sleep(2)
-    #pyautogui.moveTo(630,668)#this is to go full screen
-    #time.sleep(1)
-    #pyautogui.press('esc')
-    pyautogui.press('p')#pause the ad
-    time.sleep(1)
-    pyautogui.press('r')#resume the ad
-    time.sleep(1)
-    click_through(i)
-    pyautogui.press('r')
-    time.sleep(10)
-    #os.system(bashCommand)
+    
     close_tab()
 
 def brightcove_auto(i):
     b.open(i,new=new)
     time.sleep(3)
-    pyautogui.press('p')#pause the ad
-    time.sleep(1)
-    pyautogui.press('r')#resume the ad
-    time.sleep(2)
-    click_through(i)
-    time.sleep(10)
+    
     #os.system(bashCommand)
     close_tab()
 
 def main():
-    das_auto = input('are these urls autoplay or not? type out yes or no \n')
+    ad_spotter()
+    '''das_auto = input('are these urls autoplay or not? type out yes or no \n')
     for i in file1:
         try:
             if das_auto == 'yes':
@@ -160,7 +133,7 @@ def main():
             except KeyboardInterrupt:
                 print ('resuming')
                 os.system(bashCommand)
-                continue
+                continue'''
 main()
     
 
