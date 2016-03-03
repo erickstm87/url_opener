@@ -29,17 +29,21 @@ new = 1
 file1 = open('bright_urls.txt', 'r')
 x = 0
 
-def ad_spotter():
+def ad_spotter(i):
     try:
         x,y = pyautogui.locateCenterOnScreen('play_icon.png')
         l,s = (int(x/2),int(y/2))
         pyautogui.moveTo(l,s)
         pyautogui.click(l,s)
+        time.sleep(2)
         #pyautogui.click(l,s)
+        #print(l,s)
         return(l,s)
     except:
         type=='NoneType'
         print('couldnt find play icon')
+        with open('problem_b.txt', 'a') as f:
+            f.write('COULDNT FIND PLAY ICON'+ i+'\n')
     
 def full_screen(x,z):
     try:
@@ -64,16 +68,23 @@ def resume():
     pyautogui.moveTo(r,f)
     pyautogui.click(r,f)
     return(r,f)
-    if type=="NoneType":
+    '''if type=="NoneType":
         print('couldnt find it')
-
-def click_through():
-    x,y = ad_spotter()
+        with open('problem_b.txt', 'a') as f:
+            f.write('COULDNT FIND THE RESUME PLAY ICON' + i+'\n')'''
+def click_through(i):
+    print('click_through is running')
+    x,y = ad_spotter(i)
     pyautogui.click(x,y)
     time.sleep(2)
     pyautogui.click(x,y)
     time.sleep(2)
     close_tab()
+    '''except:
+        if type=="NoneType":
+            print('couldnt click through')
+            with open('problem_b.txt', 'a') as f:
+                f.write('COULDNT CLICK THROUGH' +i+'\n')'''
     
 def close_tab():
     pyautogui.keyDown('command')
@@ -100,8 +111,8 @@ def close_tab():
 def brightcove_noauto(i):
     b.open(i,new=new)
     time.sleep(2)
-    ad_spotter()
-    click_through()
+    #ad_spotter(i)
+    click_through(i)
     x,z = resume()
     full_screen(x,z)
     time.sleep(9)
@@ -110,7 +121,7 @@ def brightcove_noauto(i):
 def brightcove_auto(i):
     b.open(i,new=new)
     time.sleep(2)
-    click_through()
+    click_through(i)
     x,z = resume()
     full_screen(x,z)
     time.sleep(9)
