@@ -31,7 +31,7 @@ x = 0
 
 def ad_spotter(i):
     try:
-        x,y = pyautogui.locateCenterOnScreen('play_icon.png')
+        x,y = pyautogui.locateCenterOnScreen('jira.png')
         l,s = (int(x/2),int(y/2))
         pyautogui.moveTo(l,s)
         pyautogui.click(l,s)
@@ -44,9 +44,12 @@ def ad_spotter(i):
         print('couldnt find play icon')
         with open('problem_b.txt', 'a') as f:
             f.write('COULDNT FIND PLAY ICON'+ i+'\n')
+            return
     
-def full_screen(x,z):
+def full_screen(i):
     try:
+        x,z = resume()
+        print('full_screen returns %s %s as coordinates for resume' %(x,z))
         i,f = (847+x,z)
         print(i,f)
         pyautogui.moveTo(i,f)
@@ -61,30 +64,36 @@ def full_screen(x,z):
             f.write('FULL SCREEN NOT FOUND'+ i+'\n')
             
 def resume():
-    #print('running resume')
-    f,g = pyautogui.locateCenterOnScreen('play.png')
-    r,f = (int(f/2),int(g/2))
-    #print(r,f)
-    pyautogui.moveTo(r,f)
-    pyautogui.click(r,f)
-    return(r,f)
-    '''if type=="NoneType":
-        print('couldnt find it')
-        with open('problem_b.txt', 'a') as f:
-            f.write('COULDNT FIND THE RESUME PLAY ICON' + i+'\n')'''
+    try:
+        #print('running resume')
+        f,g = pyautogui.locateCenterOnScreen('play.png')
+        r,f = (int(f/2),int(g/2))
+        #print(r,f)
+        pyautogui.moveTo(r,f)
+        pyautogui.click(r,f)
+        print(r,f)
+        return(r,f)
+    except:
+        if type=="NoneType":
+            print('couldnt find it')
+            with open('problem_b.txt', 'a') as f:
+                f.write('COULDNT FIND THE RESUME PLAY ICON' + i+'\n')
+            return
 def click_through(i):
-    print('click_through is running')
-    x,y = ad_spotter(i)
-    pyautogui.click(x,y)
-    time.sleep(2)
-    pyautogui.click(x,y)
-    time.sleep(2)
-    close_tab()
-    '''except:
+    try:
+        print('click_through is running')
+        x,y = ad_spotter(i)
+        pyautogui.click(x,y)
+        time.sleep(2)
+        pyautogui.click(x,y)
+        time.sleep(2)
+        close_tab()
+    except:
         if type=="NoneType":
             print('couldnt click through')
             with open('problem_b.txt', 'a') as f:
-                f.write('COULDNT CLICK THROUGH' +i+'\n')'''
+                f.write('COULDNT CLICK THROUGH' +i+'\n')
+        return
     
 def close_tab():
     pyautogui.keyDown('command')
@@ -113,8 +122,8 @@ def brightcove_noauto(i):
     time.sleep(2)
     #ad_spotter(i)
     click_through(i)
-    x,z = resume()
-    full_screen(x,z)
+    #x,z = resume()
+    full_screen(i)
     time.sleep(9)
     close_tab()
 
@@ -122,8 +131,7 @@ def brightcove_auto(i):
     b.open(i,new=new)
     time.sleep(2)
     click_through(i)
-    x,z = resume()
-    full_screen(x,z)
+    full_screen()
     time.sleep(9)
     close_tab()
    
@@ -152,8 +160,8 @@ def main():
                     if message == 'yes':
                         e_message = input('what would you like your message to be? \n')
                         with open('problem_b.txt', 'a') as f:
-                            f.write(e_message.upper()+','+ i+'\n')
-                            os.system(bashCommand)
+                            f.write(e_message.upper()+'\n'+ i+'\n')
+                            #os.system(bashCommand)
                             continue
                     elif message == 'no':
                         with open('problem_b.txt', 'a') as f:

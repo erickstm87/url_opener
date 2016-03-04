@@ -30,7 +30,7 @@ new = 1
 file1 = open('easi_urls.txt', 'r')
 x = 0
 
-def ad_spotter(i):
+def ad_spotter(i): #i may be able to change this entire function so that it uses one point of reference however I may still need to use a different point of reference for every browser
     try:
         if b_rowser == 'safari':
             l = ('saf_ad.png')
@@ -38,9 +38,9 @@ def ad_spotter(i):
             l = ('fire_ad.png')
         elif b_rowser == 'chrome':
             l = ('chrome_ad.png')
-        x,y = pyautogui.locateCenterOnScreen(l)
-        l,s = (int(x/2),int(y/2))
-        new_center = ((l+125),(s+125))
+        x,y = pyautogui.locateCenterOnScreen('play!.png')
+        r,s = (int(x/2),int(y/2))
+        new_center = ((r+125),(s+125))
         #print(new_center)
         pyautogui.moveTo(new_center)
         pyautogui.click(new_center)
@@ -53,6 +53,10 @@ def ad_spotter(i):
 
 def full_screen(i):
     try:
+        x,y = pyautogui.locateCenterOnScreen('play!.png')
+        r,s = (int(x/2),int(y/2))
+        r,s = ('values') #need to put in values to be added onto the point of reference (play! icon)
+    '''try:
         ad_spotter(i)
         time.sleep(1)
         x, y = pyautogui.locateCenterOnScreen('full_screen.png')
@@ -63,7 +67,7 @@ def full_screen(i):
         print('couldnt find full screen')
         with open('problem.txt', 'a') as f:
             f.write('FULL SCREEN NOT FOUND'+ i+'\n')
-            main()
+            main()'''
 
 def scroll_down():
     j = 0
@@ -80,11 +84,14 @@ def scroll_down():
 
 def click_through(i):
     ad_spotter(i)
-    for i in range(0,3):
-        pyautogui.click()
+    #for i in range(0,3):
+    #    pyautogui.click()
     time.sleep(2)
-    pyautogui.click()
-    close_tab()
+    #pyautogui.click()
+    #close_tab()
+    pyautogui.keyDown('command')
+    pyautogui.press('w')
+    pyautogui.keyUp('command')
     #pyautogui.click(663,412)
 
 def scroll_up():
@@ -145,9 +152,10 @@ def incontent_auto(i):
     time.sleep(2)
     pyautogui.press('r')
     time.sleep(1)
-    full_screen(i)
-    pyautogui.press('esc')
+    #full_screen(i)
+    #pyautogui.press('esc')
     click_through(i)
+    pyautogui.click()
     pyautogui.press('r')
     #full_screen()
     time.sleep(8)
@@ -201,7 +209,6 @@ def main():
             try:
                 response = input()
                 if response == 'quit':
-                    #os.system(bashCommand)
                     quit()
                 elif response == 'copy':
                     message = input('would you like to submit an error message with the URL? type out yes or no \n')
