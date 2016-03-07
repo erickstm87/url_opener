@@ -30,6 +30,38 @@ new = 1
 file1 = open('easi_urls.txt', 'r')
 x = 0
 
+def scroll_downin():
+    i = 0
+    if b_rowser == 'safari':
+        for i in range(0,7):
+            pyautogui.press('down')
+    elif b_rowser == 'firefox':
+        for i in range(0,12):
+            pyautogui.press('down'):
+    elif b_rowser == 'chrome':
+        for i in range(0,15)
+            pyautogui.press('down')
+
+def instream_adspot(i):
+    try:
+        if b_rowser == 'safari':
+            l = ('in_saf.png')
+        elif b_rowser == 'firefox':
+            l = ('in_fire.png')
+        elif b_rowser == 'chrome':
+            l = ('in_chrome.png')
+        x,y = pyautogui.locateCenterOnScreen(l)
+        bottom_play = ((x),(y-50))
+        pyautogui.moveTo(bottom_play)
+        pyautogui.click(bottom_play)
+        return bottom_play
+    except:
+        type == 'NoneType'
+        print('no ad could be found')
+        with open('problem.txt', 'a') as f:
+            f.write('NO AD FOUND'+ i+'\n')
+            main()
+            
 def ad_spotter(i): 
     try:
         if b_rowser == 'safari':
@@ -68,7 +100,7 @@ def full_screen(i):
 def scroll_down():
     j = 0
     if b_rowser == 'safari':
-        for j in range(0,37):
+        for j in range(0,30):
             pyautogui.press('down')
     elif b_rowser == 'firefox':
         for j in range(0,26):
@@ -80,7 +112,7 @@ def scroll_down():
 
 def click_through(i):
     x,y = ad_spotter(i)
-    l,s = (x,y-50)
+    l,s = (x+50,y-50)
     pyautogui.moveTo(l,s)
     time.sleep(2)
     for i in range(0,3):
@@ -127,6 +159,8 @@ def incontent_noauto(i):
     time.sleep(1)
     pyautogui.press('s')
     time.sleep(2)
+    pyautogui.press('m')#mute the ad
+    pyautogui.press('v')#un-mute
     click_through(i)
     pyautogui.press('p')#pause the ad
     time.sleep(1)
@@ -134,8 +168,11 @@ def incontent_noauto(i):
     full_screen(i)
     time.sleep(1)
     pyautogui.press('esc')
-    click_through(i)
-    time.sleep(2)
+    pyautogui.click(810,409)
+    pyautogui.click(810,409)
+    x,y = ad_spotter(i)
+    pyautogui.click(x,y)
+    time.sleep(8)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
@@ -145,18 +182,20 @@ def incontent_auto(i):
     time.sleep(2)
     scroll_down()
     time.sleep(1)
-    pyautogui.click(663,412)
+    pyautogui.press('m')#mute the ad
+    pyautogui.press('v')#un-mute
+    click_through(i)
     time.sleep(3)
     pyautogui.press('p')
     time.sleep(2)
     pyautogui.press('r')
     time.sleep(1)
-    #full_screen(i)
-    #pyautogui.press('esc')
-    click_through(i)
-    pyautogui.click()
-    pyautogui.press('r')
-    #full_screen()
+    full_screen(i)
+    pyautogui.press('esc')
+    pyautogui.click(810,409)
+    pyautogui.click(810,409)
+    x,y = ad_spotter(i)
+    pyautogui.click(x,y)
     time.sleep(8)
     scroll_up()
     #os.system(bashCommand)
@@ -164,6 +203,8 @@ def incontent_auto(i):
 
 def instream_noauto(i):
     b.open(i,new=new)
+    time.sleep(2)
+    scroll_downin()
     time.sleep(3)
     pyautogui.press('s')#starts the ad
     time.sleep(2)
@@ -182,7 +223,8 @@ def instream_noauto(i):
 
 def instream_auto(i):
     b.open(i,new=new)
-    time.sleep(3)
+    time.sleep(2)
+    scroll_downin()
     pyautogui.press('p')#pause the ad
     time.sleep(1)
     pyautogui.press('r')#resume the ad
@@ -193,7 +235,7 @@ def instream_auto(i):
     close_tab()
 
 def main():
-    click_through('http://integration.lod.search.spotxchange.com/test/ad/js/easi/EASI.html?easi_version=2&spotx_ad_unit=incontent&delay_page_load=&spotx_defer_execution=&ad_count=1&spotx_ad_format=html5&spotx_banner_size=&spotx_channel_id=92532&spotx_content_width=400&spotx_content_height=300&spotx_ad_max_duration=45&spotx_content_page_url=http%3A%2F%2Fintegration.lod.search.spotxchange.com&spotx_content_url=https%3A%2F%2Fia700406.us.archive.org%2F30%2Fitems%2FTreyBarthSample1Sample1mp4%2FSample_1_512kb.mp4&spotx_custom_skin=&spotx_autoplay=&spotx_ad_volume=70&spotx_ad_mute=0&spotx_force_mwa=&spotx_loop=&spotx_collapse=&spotx_unmute_on_mouse=&spotx_click_to_replay=&iframe=0&spotx_https=&app%5Bspotx_app_name%5D=&app%5Bspotx_app_domain%5D=&app%5Bspotx_app_cat%5D=&app%5Bspotx_app_ver%5D=&app%5Bspotx_app_bundle%5D=&app%5Bspotx_app_privacypolicy%5D=&app%5Bspotx_app_storeurl%5D=&device%5Bspotx_device_ifa%5D=&device%5Bspotx_device_carrier%5D=&device%5Bspotx_device_os%5D=&device%5Bspotx_device_osv%5D=&device%5Bspotx_device_make%5D=&device%5Bspotx_device_model%5D=&device%5Bspotx_device_ua%5D=&device%5Bspotx_device_geo_lat%5D=&device%5Bspotx_device_geo_lon%5D=&device%5Bspotx_device_devicetype%5D=&device%5Bspotx_device_dnt%5D=&device%5Bspotx_device_connectiontype%5D=&user%5Bspotx_user_yob%5D=&user%5Bspotx_user_geo_lat%5D=&user%5Bspotx_user_geo_lon%5D=&spotx_query_params=&custom=')
+    instream_adspot('http://integration.lod.search.spotxchange.com/test/ad/js/easi/EASI.html?easi_version=2&spotx_ad_unit=instream&ad_count=1&spotx_ad_format=html5&spotx_banner_size=&spotx_channel_id=95742&spotx_content_width=400&spotx_content_height=300&spotx_ad_max_duration=15&spotx_content_url=https%3A%2F%2Fia700406.us.archive.org%2F30%2Fitems%2FTreyBarthSample1Sample1mp4%2FSample_1_512kb.mp4&spotx_custom_skin=&spotx_autoplay=&spotx_ad_volume=70&spotx_ad_mute=0&spotx_force_mwa=&spotx_loop=&spotx_collapse=&spotx_unmute_on_mouse=&spotx_click_to_replay=&iframe=&spotx_https=')
     '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
