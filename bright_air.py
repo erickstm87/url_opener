@@ -60,6 +60,7 @@ def instream_adspot(i):
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
             f.write('NO AD FOUND'+ i+'\n')
+            close_tab()
             main()
 
 def ad_spotter(i): 
@@ -82,6 +83,7 @@ def ad_spotter(i):
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
             f.write('NO AD FOUND'+ i+'\n')
+            close_tab()
             main()
 
 def full_screen(i):
@@ -168,7 +170,7 @@ def incontent_noauto(i):
     pyautogui.press('esc')
     #pyautogui.click(810,409)
     #pyautogui.click(810,409)
-    pyautogui.click()
+    #pyautogui.click()
     pyautogui.click()
     pyautogui.press('s')
     pyautogui.press('r')
@@ -177,7 +179,7 @@ def incontent_noauto(i):
     time.sleep(1)
     pyautogui.press('r')#resume the ad
     pyautogui.click()
-    time.sleep(8)
+    time.sleep(15)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
@@ -203,7 +205,7 @@ def incontent_auto(i):
     time.sleep(2)
     pyautogui.press('r')
     pyautogui.click()
-    time.sleep(8)
+    time.sleep(15)
     scroll_up()
     #os.system(bashCommand)
     close_tab()
@@ -265,22 +267,15 @@ def main():
                 if response == 'quit':
                     quit()
                 elif response == 'copy':
-                    message = raw_input('would you like to submit an error message with the URL? type out yes or no \n')
-                    if message == 'yes':
-                        e_message = raw_input('what would you like your message to be? \n')
-                        with open('problem.txt', 'a') as f:
-                            f.write(e_message.upper()+','+ i+'\n')
-                            os.system(bashCommand)
-                            continue
-                    elif message == 'no':
-                        with open('problem.txt', 'a') as f:
-                            f.write(i+'\n')
-                            os.system(bashCommand)
-                            continue
-                    else:
-                        print ('Resuming...')
+                    e_message = raw_input('what would you like your message to be? \n')
+                    with open('problem.txt', 'a') as f:
+                        f.write(e_message.upper()+','+ i+'\n')
                         os.system(bashCommand)
                         continue
+                else:
+                    print ('Resuming...')
+                    os.system(bashCommand)
+                    continue
             except KeyboardInterrupt:
                 print ('resuming')
                 os.system(bashCommand)
