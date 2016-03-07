@@ -30,27 +30,27 @@ new = 1
 file1 = open('easi_urls.txt', 'r')
 x = 0
 
-def ad_spotter(string): 
-    #try:
-    if b_rowser == 'safari':
-        l = ('saf_ad.png')
-    elif b_rowser == 'firefox':
-        l = ('fire_ad.png')
-    elif b_rowser == 'chrome':
-        l = ('chrome_play.png')
-    x,y = pyautogui.locateCenterOnScreen(l)
-    #r,s = (int(x/2),int(y/2))
-    bottom_play = ((x-73),(y+309))
-    #print(new_center)
-    pyautogui.moveTo(bottom_play)
-    pyautogui.click(bottom_play)
-    return bottom_play
-    '''except:
+def ad_spotter(i): 
+    try:
+        if b_rowser == 'safari':
+            l = ('saf_play.png')
+        elif b_rowser == 'firefox':
+            l = ('fire_play.png')
+        elif b_rowser == 'chrome':
+            l = ('chrome_play.png')
+        x,y = pyautogui.locateCenterOnScreen(l)
+        #r,s = (int(x/2),int(y/2))
+        bottom_play = ((x-73),(y+309))
+        #print(new_center)
+        pyautogui.moveTo(bottom_play)
+        pyautogui.click(bottom_play)
+        return bottom_play
+    except:
         type == 'NoneType'
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
             f.write('NO AD FOUND'+ i+'\n')
-            main()'''
+            main()
 
 def full_screen(i):
     try:
@@ -79,15 +79,17 @@ def scroll_down():
     #time.sleep(2)
 
 def click_through(i):
-    ad_spotter(i)
-    #for i in range(0,3):
-    #    pyautogui.click()
+    x,y = ad_spotter(i)
+    l,s = (x,y-50)
+    pyautogui.moveTo(l,s)
     time.sleep(2)
-    #pyautogui.click()
-    #close_tab()
-    pyautogui.keyDown('command')
+    for i in range(0,3):
+        pyautogui.click(l,s)
+    time.sleep(2)
+    close_tab()
+    '''pyautogui.keyDown('command')
     pyautogui.press('w')
-    pyautogui.keyUp('command')
+    pyautogui.keyUp('command')'''
     #pyautogui.click(663,412)
 
 def scroll_up():
@@ -130,6 +132,7 @@ def incontent_noauto(i):
     time.sleep(1)
     pyautogui.press('r')#resume the ad
     full_screen(i)
+    time.sleep(1)
     pyautogui.press('esc')
     click_through(i)
     time.sleep(2)
@@ -190,7 +193,7 @@ def instream_auto(i):
     close_tab()
 
 def main():
-    full_screen('http://integration.lod.search.spotxchange.com/test/ad/js/easi/EASI.html?easi_version=2&spotx_ad_unit=incontent&delay_page_load=&spotx_defer_execution=&ad_count=1&spotx_ad_format=html5&spotx_banner_size=&spotx_channel_id=92532&spotx_content_width=400&spotx_content_height=300&spotx_ad_max_duration=45&spotx_content_page_url=http%3A%2F%2Fintegration.lod.search.spotxchange.com&spotx_content_url=https%3A%2F%2Fia700406.us.archive.org%2F30%2Fitems%2FTreyBarthSample1Sample1mp4%2FSample_1_512kb.mp4&spotx_custom_skin=&spotx_autoplay=&spotx_ad_volume=70&spotx_ad_mute=0&spotx_force_mwa=&spotx_loop=&spotx_collapse=&spotx_unmute_on_mouse=&spotx_click_to_replay=&iframe=0&spotx_https=&app%5Bspotx_app_name%5D=&app%5Bspotx_app_domain%5D=&app%5Bspotx_app_cat%5D=&app%5Bspotx_app_ver%5D=&app%5Bspotx_app_bundle%5D=&app%5Bspotx_app_privacypolicy%5D=&app%5Bspotx_app_storeurl%5D=&device%5Bspotx_device_ifa%5D=&device%5Bspotx_device_carrier%5D=&device%5Bspotx_device_os%5D=&device%5Bspotx_device_osv%5D=&device%5Bspotx_device_make%5D=&device%5Bspotx_device_model%5D=&device%5Bspotx_device_ua%5D=&device%5Bspotx_device_geo_lat%5D=&device%5Bspotx_device_geo_lon%5D=&device%5Bspotx_device_devicetype%5D=&device%5Bspotx_device_dnt%5D=&device%5Bspotx_device_connectiontype%5D=&user%5Bspotx_user_yob%5D=&user%5Bspotx_user_geo_lat%5D=&user%5Bspotx_user_geo_lon%5D=&spotx_query_params=&custom=')
+    click_through('http://integration.lod.search.spotxchange.com/test/ad/js/easi/EASI.html?easi_version=2&spotx_ad_unit=incontent&delay_page_load=&spotx_defer_execution=&ad_count=1&spotx_ad_format=html5&spotx_banner_size=&spotx_channel_id=92532&spotx_content_width=400&spotx_content_height=300&spotx_ad_max_duration=45&spotx_content_page_url=http%3A%2F%2Fintegration.lod.search.spotxchange.com&spotx_content_url=https%3A%2F%2Fia700406.us.archive.org%2F30%2Fitems%2FTreyBarthSample1Sample1mp4%2FSample_1_512kb.mp4&spotx_custom_skin=&spotx_autoplay=&spotx_ad_volume=70&spotx_ad_mute=0&spotx_force_mwa=&spotx_loop=&spotx_collapse=&spotx_unmute_on_mouse=&spotx_click_to_replay=&iframe=0&spotx_https=&app%5Bspotx_app_name%5D=&app%5Bspotx_app_domain%5D=&app%5Bspotx_app_cat%5D=&app%5Bspotx_app_ver%5D=&app%5Bspotx_app_bundle%5D=&app%5Bspotx_app_privacypolicy%5D=&app%5Bspotx_app_storeurl%5D=&device%5Bspotx_device_ifa%5D=&device%5Bspotx_device_carrier%5D=&device%5Bspotx_device_os%5D=&device%5Bspotx_device_osv%5D=&device%5Bspotx_device_make%5D=&device%5Bspotx_device_model%5D=&device%5Bspotx_device_ua%5D=&device%5Bspotx_device_geo_lat%5D=&device%5Bspotx_device_geo_lon%5D=&device%5Bspotx_device_devicetype%5D=&device%5Bspotx_device_dnt%5D=&device%5Bspotx_device_connectiontype%5D=&user%5Bspotx_user_yob%5D=&user%5Bspotx_user_geo_lat%5D=&user%5Bspotx_user_geo_lon%5D=&spotx_query_params=&custom=')
     '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
