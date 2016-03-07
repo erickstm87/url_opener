@@ -15,7 +15,7 @@ import random
 
 pyautogui.size()
 width,height = pyautogui.size()
-b_rowser = input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
+b_rowser = raw_input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
 if b_rowser == 'safari':
     b = webbrowser.get('safari')
     bashCommand = "sudo killall 'Safari' "
@@ -30,44 +30,40 @@ new = 1
 file1 = open('easi_urls.txt', 'r')
 x = 0
 
-def ad_spotter(i): #i may be able to change this entire function so that it uses one point of reference however I may still need to use a different point of reference for every browser
-    try:
-        if b_rowser == 'safari':
-            l = ('saf_ad.png')
-        elif b_rowser == 'firefox':
-            l = ('fire_ad.png')
-        elif b_rowser == 'chrome':
-            l = ('chrome_play.png')
-        x,y = pyautogui.locateCenterOnScreen(l)
-        #r,s = (int(x/2),int(y/2))
-        bottom_play = ((x-73),(y+309))
-        #print(new_center)
-        pyautogui.moveTo(new_center)
-        pyautogui.click(new_center)
-    except:
+def ad_spotter(string): 
+    #try:
+    if b_rowser == 'safari':
+        l = ('saf_ad.png')
+    elif b_rowser == 'firefox':
+        l = ('fire_ad.png')
+    elif b_rowser == 'chrome':
+        l = ('chrome_play.png')
+    x,y = pyautogui.locateCenterOnScreen(l)
+    #r,s = (int(x/2),int(y/2))
+    bottom_play = ((x-73),(y+309))
+    #print(new_center)
+    pyautogui.moveTo(bottom_play)
+    pyautogui.click(bottom_play)
+    return bottom_play
+    '''except:
         type == 'NoneType'
         print('no ad could be found')
         with open('problem.txt', 'a') as f:
             f.write('NO AD FOUND'+ i+'\n')
-            main()
+            main()'''
 
 def full_screen(i):
     try:
-        x,y = pyautogui.locateCenterOnScreen('play!.png')
-        #r,s = (int(x/2),int(y/2))
-        #r,s = ('values') #need to put in values to be added onto the point of reference (play! icon)
-    '''try:
-        ad_spotter(i)
-        time.sleep(1)
-        x, y = pyautogui.locateCenterOnScreen('full_screen.png')
-        pyautogui.click(x,y)
+        x,y = ad_spotter(i)
+        l,s = (x+360,y)
+        pyautogui.click(l,s)
         time.sleep(3)
     except:
         type == 'NoneType'
         print('couldnt find full screen')
         with open('problem.txt', 'a') as f:
             f.write('FULL SCREEN NOT FOUND'+ i+'\n')
-            main()'''
+            main()
 
 def scroll_down():
     j = 0
@@ -194,7 +190,8 @@ def instream_auto(i):
     close_tab()
 
 def main():
-    for i in file1:
+    full_screen('http://integration.lod.search.spotxchange.com/test/ad/js/easi/EASI.html?easi_version=2&spotx_ad_unit=incontent&delay_page_load=&spotx_defer_execution=&ad_count=1&spotx_ad_format=html5&spotx_banner_size=&spotx_channel_id=92532&spotx_content_width=400&spotx_content_height=300&spotx_ad_max_duration=45&spotx_content_page_url=http%3A%2F%2Fintegration.lod.search.spotxchange.com&spotx_content_url=https%3A%2F%2Fia700406.us.archive.org%2F30%2Fitems%2FTreyBarthSample1Sample1mp4%2FSample_1_512kb.mp4&spotx_custom_skin=&spotx_autoplay=&spotx_ad_volume=70&spotx_ad_mute=0&spotx_force_mwa=&spotx_loop=&spotx_collapse=&spotx_unmute_on_mouse=&spotx_click_to_replay=&iframe=0&spotx_https=&app%5Bspotx_app_name%5D=&app%5Bspotx_app_domain%5D=&app%5Bspotx_app_cat%5D=&app%5Bspotx_app_ver%5D=&app%5Bspotx_app_bundle%5D=&app%5Bspotx_app_privacypolicy%5D=&app%5Bspotx_app_storeurl%5D=&device%5Bspotx_device_ifa%5D=&device%5Bspotx_device_carrier%5D=&device%5Bspotx_device_os%5D=&device%5Bspotx_device_osv%5D=&device%5Bspotx_device_make%5D=&device%5Bspotx_device_model%5D=&device%5Bspotx_device_ua%5D=&device%5Bspotx_device_geo_lat%5D=&device%5Bspotx_device_geo_lon%5D=&device%5Bspotx_device_devicetype%5D=&device%5Bspotx_device_dnt%5D=&device%5Bspotx_device_connectiontype%5D=&user%5Bspotx_user_yob%5D=&user%5Bspotx_user_geo_lat%5D=&user%5Bspotx_user_geo_lon%5D=&spotx_query_params=&custom=')
+    '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
                 incontent_noauto(i)
@@ -207,13 +204,13 @@ def main():
         except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
             try:
-                response = input()
+                response = raw_input()
                 if response == 'quit':
                     quit()
                 elif response == 'copy':
-                    message = input('would you like to submit an error message with the URL? type out yes or no \n')
+                    message = raw_input('would you like to submit an error message with the URL? type out yes or no \n')
                     if message == 'yes':
-                        e_message = input('what would you like your message to be? \n')
+                        e_message = raw_input('what would you like your message to be? \n')
                         with open('problem.txt', 'a') as f:
                             f.write(e_message.upper()+','+ i+'\n')
                             os.system(bashCommand)
@@ -230,7 +227,7 @@ def main():
             except KeyboardInterrupt:
                 print ('resuming')
                 os.system(bashCommand)
-                continue
+                continue'''
 main()
     
 
