@@ -1,0 +1,36 @@
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_41uw0nZ5g&account_id=1840814793&integration_type=iframe&playlist=false
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_41uw0nZ5g&account_id=1840814793&integration_type=iframe&playlist=false
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_E1gOOCnZ9g&account_id=1840814793&integration_type=iframe&playlist=true
+
+NO AD
+http://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_E1gOOCnZ9g&account_id=1840814793&integration_type=iframe&playlist=true
+
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_41uw0nZ5g&account_id=1840814793&integration_type=iframe&playlist=false
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_41uw0nZ5g&account_id=1840814793&integration_type=iframe&playlist=false
+
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_V1zZdR2Wqe&account_id=1840814793&integration_type=iframe&playlist=true
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_V1zZdR2Wqe&account_id=1840814793&integration_type=iframe&playlist=true
+
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_EJTUC2W5l&account_id=1840814793&integration_type=iframe&playlist=false
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_EJTUC2W5l&account_id=1840814793&integration_type=iframe&playlist=false
+
+SHIT BORK
+http://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_41uw0nZ5g&account_id=1840814793&integration_type=iframe&playlist=false
+
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_V1zZdR2Wqe&account_id=1840814793&integration_type=iframe&playlist=true
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_V1zZdR2Wqe&account_id=1840814793&integration_type=iframe&playlist=true
+
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_EJTUC2W5l&account_id=1840814793&integration_type=iframe&playlist=false
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_EJTUC2W5l&account_id=1840814793&integration_type=iframe&playlist=false
+
+COULDNT FIND PLAY ICONhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_EyZLO03Zcg&account_id=1840814793&integration_type=iframe&playlist=true
+
+FULL SCREEN NOT FOUNDhttp://stage3.lod.search.spotxchange.com/test/plugin/js/brightcove/embed_test.html?player_id=VkqctnZ5x_EyZLO03Zcg&account_id=1840814793&integration_type=iframe&playlist=true
+
