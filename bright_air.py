@@ -50,7 +50,7 @@ def instream_adspot(i):
             l = ('in_fire.png')
         elif b_rowser == 'chrome':
             l = ('in_chrome.png')
-        x,y = pyautogui.locateCenterOnScreen(l)
+        x,y = pyautogui.locateCenterOnScreen(l,grayscale=True,tolerance=10)
         bottom_play = ((x),(y-50))
         pyautogui.moveTo(bottom_play)
         pyautogui.click(bottom_play)
