@@ -13,6 +13,9 @@ import random
 
 #file1 = input('whats the filename of your urls? make sure its a txt file, you dont need to type in the file extension \n') + '.txt'
 
+new = 1
+file1 = open('easi_urls.txt', 'r')
+x = 0
 pyautogui.size()
 width,height = pyautogui.size()
 b_rowser = raw_input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
@@ -24,11 +27,14 @@ elif b_rowser == 'chrome':
     bashCommand = "sudo killall 'google' "
 elif b_rowser == 'firefox':
     b = webbrowser.get('firefox')
+    new_file = []
+    for row in file1:
+        new_file.append(row)
+        np.transpose(new_file)
+        new_file = file1
+#p.transpose(new_file)
     bashCommand = "sudo killall 'firefox' "
 
-new = 1
-file1 = open('easi_urls.txt', 'r')
-x = 0
 
 def scroll_downin():
     i = 0
@@ -123,10 +129,6 @@ def click_through(i):
         pyautogui.click(l,s)
     time.sleep(2)
     close_tab()
-    '''pyautogui.keyDown('command')
-    pyautogui.press('w')
-    pyautogui.keyUp('command')'''
-    #pyautogui.click(663,412)
 
 def scroll_up():
     j = 0
@@ -262,22 +264,17 @@ def main():
                 instream_auto(i)
         except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
-            try:
-                response = raw_input()
-                if response == 'quit':
-                    quit()
-                elif response == 'copy':
-                    e_message = raw_input('what would you like your message to be? \n')
-                    with open('problem.txt', 'a') as f:
-                        f.write(e_message.upper()+','+ i+'\n')
-                        os.system(bashCommand)
-                        continue
-                else:
-                    print ('Resuming...')
+            response = raw_input()
+            if response == 'quit':
+                sys.exit()
+            elif response == 'copy':
+                e_message = raw_input('what would you like your message to be? \n')
+                with open('problem.txt', 'a') as f:
+                    f.write(e_message.upper()+','+ i+'\n')
                     os.system(bashCommand)
                     continue
-            except KeyboardInterrupt:
-                print ('resuming')
+            else:
+                print ('Resuming...')
                 os.system(bashCommand)
                 continue
 main()
