@@ -16,6 +16,7 @@ import random
 new = 1
 file1 = open('easi_urls.txt', 'r')
 x = 0
+
 pyautogui.size()
 width,height = pyautogui.size()
 b_rowser = raw_input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
@@ -264,18 +265,19 @@ def main():
                 instream_auto(i)
         except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
-            response = raw_input()
-            if response == 'quit':
-                sys.exit()
-            elif response == 'copy':
-                e_message = raw_input('what would you like your message to be? \n')
-                with open('problem.txt', 'a') as f:
-                    f.write(e_message.upper()+','+ i+'\n')
+            try:
+                response = raw_input()
+                if response == 'quit':
+                    bashCommand = "sudo killall 'python'"
                     os.system(bashCommand)
-                    continue
-            else:
-                print ('Resuming...')
-                os.system(bashCommand)
+                elif response == 'copy':
+                    e_message = raw_input('what would you like your message to be? \n')
+                    with open('problem.txt', 'a') as f:
+                        f.write(e_message.upper()+','+ i+'\n')
+                        os.system(bashCommand)
+                        continue
+            except KeyboardInterrupt:
+                print 'Resuming...'
                 continue
 main()
     
