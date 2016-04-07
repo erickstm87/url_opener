@@ -52,11 +52,11 @@ def scroll_downin():
 def instream_adspot(i):
     try:
         if b_rowser == 'safari':
-            l = ('in_saf.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_saf.png'))
         elif b_rowser == 'firefox':
-            l = ('in_fire.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_fire.png'))
         elif b_rowser == 'chrome':
-            l = ('in_chrome.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_chrome.png')
         x,y = pyautogui.locateCenterOnScreen(l,grayscale=True,tolerance=10)
         bottom_play = ((x),(y-50))
         pyautogui.moveTo(bottom_play)
