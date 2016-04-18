@@ -6,8 +6,9 @@ import sys
 import os
 import time
 import pyautogui
-from subprocess import call
+from subprocess import call 
 import random
+from shutil import copyfile
 #for installation of pyautogui on mac check out http://stackoverflow.com/questions/35051580/phyton3-pip-and-pyautogui-install-mac-remove-broken-python and go to the bottom 
 #sed command to eliminate all iframes on the urls (sed -i -e 's/iframe=./iframe=0/g')
 
@@ -56,7 +57,7 @@ def instream_adspot(i):
         elif b_rowser == 'firefox':
             l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_fire.png'))
         elif b_rowser == 'chrome':
-            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_chrome.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_chrome.png'))
         x,y = pyautogui.locateCenterOnScreen(l,grayscale=True,tolerance=10)
         bottom_play = ((x),(y-50))
         pyautogui.moveTo(bottom_play)
@@ -252,6 +253,18 @@ def instream_auto(i):
     #os.system(bashCommand)
     close_tab()
 
+def collect_beacons():
+    shutil.move('/home/vagrant/repositories/beacon_types.txt', '.')
+    copyfile('easi_urls.txt', 'temp.csv')
+    reader = csv.reader(open('temp.csv','rb'))
+    reader1 = csv.reader(open('beacon_results.csv','rb'))
+    writer = csv.writer(open('appended_output.csv','wb'))
+    for row in reader:
+        row1 = reader1.next()
+        writer.writerow(row + row1)
+    os.remove('temp.csv')
+    os.remove('beacon_types.txt')
+
 def main():
     for i in file1:
         try:
@@ -263,6 +276,7 @@ def main():
                 instream_noauto(i)
             elif 'instrem' and 'spotx_autoplay=&' in i:
                 instream_auto(i)
+            collect_beacons()
         except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
             try:
