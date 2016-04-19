@@ -254,19 +254,20 @@ def instream_auto(i):
     close_tab()
 
 def collect_beacons():
+    subprocess.call(['cat ~/repoman/repositories/basher.sh | vagrants'])
     shutil.move('/home/vagrant/repositories/beacon_types.txt', '.')
-    copyfile('easi_urls.txt', 'temp.csv')
-    reader = csv.reader(open('temp.csv','rb'))
-    reader1 = csv.reader(open('beacon_results.csv','rb'))
-    writer = csv.writer(open('appended_output.csv','wb'))
-    for row in reader:
-        row1 = reader1.next()
-        writer.writerow(row + row1)
+    #copyfile('easi_urls.txt', 'temp.csv')
+    #reader = csv.reader(open('temp.csv','rb'))
+    '''reader1 = csv.reader(open('beacon_results.csv','rb'))
+    writer = csv.writer(open('appended_output.csv','ab'))
+    for row in reader1:
+        #row1 = reader1.next()
+        writer.writerow(row + ',' + i)
     os.remove('temp.csv')
-    os.remove('beacon_types.txt')
+    os.remove('beacon_types.txt')'''
 
 def main():
-    for i in file1:
+    '''for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
                 incontent_noauto(i)
@@ -292,7 +293,8 @@ def main():
                         continue
             except KeyboardInterrupt:
                 print 'Resuming...'
-                continue
+                continue'''
+    collect_beacons()
 main()
     
 
