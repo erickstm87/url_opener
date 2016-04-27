@@ -1,0 +1,5 @@
+beacon_type=start
+beacon_type=complete
+view_percent=25
+view_percent=50
+view_percent=75

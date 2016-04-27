@@ -187,6 +187,7 @@ def incontent_noauto(i):
     scroll_up()
     #os.system(bashCommand)
     close_tab()
+    collect_beacons(i)
 
 def incontent_auto(i):
     b.open(i,new=new)
@@ -213,6 +214,7 @@ def incontent_auto(i):
     scroll_up()
     #os.system(bashCommand)
     close_tab()
+    collect_beacons(i)
 
 def instream_noauto(i):
     b.open(i,new=new)
@@ -235,6 +237,7 @@ def instream_noauto(i):
     time.sleep(10)
     #os.system(bashCommand)
     close_tab()
+    collect_beacons(i)
 
 def instream_auto(i):
     b.open(i,new=new)
@@ -252,22 +255,29 @@ def instream_auto(i):
     time.sleep(10)
     #os.system(bashCommand)
     close_tab()
+    collect_beacons(i)
 
-def collect_beacons():
-    subprocess.call(['cat ~/repoman/repositories/basher.sh | vagrants'])
-    shutil.move('/home/vagrant/repositories/beacon_types.txt', '.')
+def collect_beacons(i):
+    #os.system('./grepper.sh')
+    #os.system('cat beacon_types.txt | cut -d= -f2 > beacon_results.txt')
     #copyfile('easi_urls.txt', 'temp.csv')
     #reader = csv.reader(open('temp.csv','rb'))
-    '''reader1 = csv.reader(open('beacon_results.csv','rb'))
-    writer = csv.writer(open('appended_output.csv','ab'))
-    for row in reader1:
-        #row1 = reader1.next()
-        writer.writerow(row + ',' + i)
-    os.remove('temp.csv')
-    os.remove('beacon_types.txt')'''
+    reader1 = (open('beacon_results.txt','r'))
+    beacons = [x.strip() for x in reader1.readlines()]
+    if 'start' and 'complete' and '25' and '50' and '75' not in beacons:
+        i = 'fail'
+        #return i
+        with open('appended_output.txt', 'a') as f:
+            f.write('message' + ','+ i + '\n')
+    else:
+        i = 'success'  
+        #return i 
+        with open('appended_output.txt', 'a') as f:
+            f.write('message' + ','+ i + '\n')
+    #os.system('>/Users/terickson/url_opener/misc/beacons_beacons/output.txt')
 
 def main():
-    '''for i in file1:
+    for i in file1:
         try:
             if 'incontent' and 'spotx_autoplay=0' in i:
                 incontent_noauto(i)
@@ -293,7 +303,7 @@ def main():
                         continue
             except KeyboardInterrupt:
                 print 'Resuming...'
-                continue'''
+                continue
     collect_beacons()
 main()
     
