@@ -187,7 +187,6 @@ def incontent_noauto(i):
     scroll_up()
     #os.system(bashCommand)
     close_tab()
-    collect_beacons(i)
 
 def incontent_auto(i):
     b.open(i,new=new)
@@ -214,7 +213,6 @@ def incontent_auto(i):
     scroll_up()
     #os.system(bashCommand)
     close_tab()
-    collect_beacons(i)
 
 def instream_noauto(i):
     b.open(i,new=new)
@@ -237,7 +235,6 @@ def instream_noauto(i):
     time.sleep(10)
     #os.system(bashCommand)
     close_tab()
-    collect_beacons(i)
 
 def instream_auto(i):
     b.open(i,new=new)
@@ -255,26 +252,23 @@ def instream_auto(i):
     time.sleep(10)
     #os.system(bashCommand)
     close_tab()
-    collect_beacons(i)
 
 def collect_beacons(i):
-    #os.system('./grepper.sh')
-    #os.system('cat beacon_types.txt | cut -d= -f2 > beacon_results.txt')
+    os.system('./grepper.sh')
+    os.system('cat beacon_types.txt | cut -d= -f2 > beacon_results.txt')
     #copyfile('easi_urls.txt', 'temp.csv')
     #reader = csv.reader(open('temp.csv','rb'))
     reader1 = (open('beacon_results.txt','r'))
     beacons = [x.strip() for x in reader1.readlines()]
     if 'start' and 'complete' and '25' and '50' and '75' not in beacons:
-        i = 'fail'
-        #return i
+        j = 'fail'
         with open('appended_output.txt', 'a') as f:
-            f.write('message' + ','+ i + '\n')
+            f.write(i + ','+ j + '\n')
     else:
-        i = 'success'  
-        #return i 
-        with open('appended_output.txt', 'a') as f:
-            f.write('message' + ','+ i + '\n')
-    #os.system('>/Users/terickson/url_opener/misc/beacons_beacons/output.txt')
+        j = 'success'  
+        #with open('appended_output.txt', 'a') as f:
+        #    f.write('message' + ','+ i + '\n')
+    os.system('>/Users/terickson/url_opener/misc/beacons_beacons/output.txt')
 
 def main():
     for i in file1:
@@ -287,7 +281,7 @@ def main():
                 instream_noauto(i)
             elif 'instrem' and 'spotx_autoplay=&' in i:
                 instream_auto(i)
-            collect_beacons()
+            collect_beacons(i)
         except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
             try:
@@ -304,7 +298,6 @@ def main():
             except KeyboardInterrupt:
                 print 'Resuming...'
                 continue
-    collect_beacons()
 main()
     
 
