@@ -81,7 +81,7 @@ def ad_spotter(i):
             l = ('chrome_play.png')
         x,y = pyautogui.locateCenterOnScreen(l)
         #r,s = (int(x/2),int(y/2))
-        bottom_play = ((x-73),(y+309))
+        bottom_play = ((x+73),(y+259))
         #print(new_center)
         pyautogui.moveTo(bottom_play)
         pyautogui.click(bottom_play)
@@ -97,7 +97,7 @@ def ad_spotter(i):
 def full_screen(i):
     try:
         x,y = ad_spotter(i)
-        l,s = (x+360,y)
+        l,s = (x+260,y)
         pyautogui.click(l,s)
         time.sleep(3)
         r,f = (l+20,s)
@@ -124,7 +124,7 @@ def scroll_down():
 
 def click_through(i):
     x,y = ad_spotter(i)
-    l,s = (x+100,y-50)
+    l,s = (x+100,y-100)
     pyautogui.moveTo(l,s)
     time.sleep(2)
     for i in range(0,3):
@@ -266,9 +266,9 @@ def collect_beacons(i):
             f.write(i + ','+ j + '\n')
     else:
         j = 'success'  
-        #with open('appended_output.txt', 'a') as f:
-        #    f.write('message' + ','+ i + '\n')
-    os.system('>/Users/terickson/url_opener/misc/beacons_beacons/output.txt')
+        with open('appended_output.txt', 'a') as f:
+            f.write(i + ','+ j + '\n')
+    os.system('>/Users/tommy/url_opener/output.txt')
 
 def main():
     for i in file1:
