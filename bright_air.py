@@ -171,9 +171,6 @@ def incontent_noauto(i):
     full_screen(i)
     time.sleep(1)
     pyautogui.press('esc')
-    #pyautogui.click(810,409)
-    #pyautogui.click(810,409)
-    #pyautogui.click()
     pyautogui.click()
     pyautogui.press('s')
     pyautogui.press('r')
@@ -196,8 +193,6 @@ def incontent_auto(i):
     pyautogui.press('v')#un-mute
     full_screen(i)
     pyautogui.press('esc')
-    #pyautogui.click(810,409)
-    #pyautogui.click(810,409)
     pyautogui.click()
     pyautogui.click()
     pyautogui.press('s')
