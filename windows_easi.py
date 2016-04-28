@@ -6,8 +6,9 @@ import sys
 import os
 import time
 import pyautogui
-from subprocess import call
+from subprocess import call 
 import random
+from shutil import copyfile
 #for installation of pyautogui on mac check out http://stackoverflow.com/questions/35051580/phyton3-pip-and-pyautogui-install-mac-remove-broken-python and go to the bottom 
 #sed command to eliminate all iframes on the urls (sed -i -e 's/iframe=./iframe=0/g')
 
@@ -19,10 +20,10 @@ x = 0
 
 pyautogui.size()
 width,height = pyautogui.size()
-b_rowser = raw_input('do you want to run this in safari, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
-if b_rowser == 'safari':
-    b = webbrowser.get('safari')
-    bashCommand = "sudo killall 'Safari' "
+b_rowser = raw_input('do you want to run this in ie, chrome, or firefox? Make sure to type your choice exactly as it appears \n')
+if b_rowser == 'ie':
+    b = webbrowser.get('c:\\program files\\internet explorer\\iexplore.exe') 
+    #bashCommand = "sudo killall 'Safari' "
 elif b_rowser == 'chrome':
     b = webbrowser.get()
     bashCommand = "sudo killall 'google' "
@@ -35,7 +36,6 @@ elif b_rowser == 'firefox':
         new_file = file1
 #p.transpose(new_file)
     bashCommand = "sudo killall 'firefox' "
-
 
 def scroll_downin():
     i = 0
@@ -52,11 +52,11 @@ def scroll_downin():
 def instream_adspot(i):
     try:
         if b_rowser == 'safari':
-            l = ('in_saf.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_saf.png'))
         elif b_rowser == 'firefox':
-            l = ('in_fire.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_fire.png'))
         elif b_rowser == 'chrome':
-            l = ('in_chrome.png')
+            l = (os.path.abspath('/Users/terickson/url_opener/png_files/in_chrome.png'))
         x,y = pyautogui.locateCenterOnScreen(l,grayscale=True,tolerance=10)
         bottom_play = ((x),(y-50))
         pyautogui.moveTo(bottom_play)
@@ -80,7 +80,7 @@ def ad_spotter(i):
             l = ('chrome_play.png')
         x,y = pyautogui.locateCenterOnScreen(l)
         #r,s = (int(x/2),int(y/2))
-        bottom_play = ((x-73),(y+309))
+        bottom_play = ((x+73),(y+259))
         #print(new_center)
         pyautogui.moveTo(bottom_play)
         pyautogui.click(bottom_play)
@@ -96,7 +96,7 @@ def ad_spotter(i):
 def full_screen(i):
     try:
         x,y = ad_spotter(i)
-        l,s = (x+360,y)
+        l,s = (x+260,y)
         pyautogui.click(l,s)
         time.sleep(3)
         r,f = (l+20,s)
@@ -123,7 +123,7 @@ def scroll_down():
 
 def click_through(i):
     x,y = ad_spotter(i)
-    l,s = (x+100,y-50)
+    l,s = (x+100,y-100)
     pyautogui.moveTo(l,s)
     time.sleep(2)
     for i in range(0,3):
@@ -252,6 +252,23 @@ def instream_auto(i):
     #os.system(bashCommand)
     close_tab()
 
+def collect_beacons(i):
+    os.system('./grepper.sh')
+    os.system('cat beacon_types.txt | cut -d= -f2 > beacon_results.txt')
+    #copyfile('easi_urls.txt', 'temp.csv')
+    #reader = csv.reader(open('temp.csv','rb'))
+    reader1 = (open('beacon_results.txt','r'))
+    beacons = [x.strip() for x in reader1.readlines()]
+    if 'start' and 'complete' and '25' and '50' and '75' not in beacons:
+        j = 'fail'
+        with open('appended_output.txt', 'a') as f:
+            f.write(i + ','+ j + '\n')
+    else:
+        j = 'success'  
+        with open('appended_output.txt', 'a') as f:
+            f.write(i + ','+ j + '\n')
+    os.system('>/Users/tommy/url_opener/output.txt')
+
 def main():
     for i in file1:
         try:
@@ -263,6 +280,7 @@ def main():
                 instream_noauto(i)
             elif 'instrem' and 'spotx_autoplay=&' in i:
                 instream_auto(i)
+            collect_beacons(i)
         except KeyboardInterrupt: 
             print ("\nPausing... (Hit ENTER to continue, type quit to exit, or copy to copy the url to the failed file.)")
             try:
